@@ -22,16 +22,24 @@ public class NormalItemUpdater implements ItemUpdater {
 
     // util
 
+    private static final int MIN_QUALITY_ALLOWED =  0;
+    private static final int MAX_QUALITY_ALLOWED = 50;
+    private static final int EXPIRY_THRESHOLD    =  0;
+
     protected void decreaseItemQuality() {
-        if (item.quality > 0) {
+        if (item.quality > MIN_QUALITY_ALLOWED) {
             item.quality = item.quality - 1;
         }
     }
 
     protected void increaseItemQuality() {
-        if (item.quality < 50) {
+        if (item.quality < MAX_QUALITY_ALLOWED) {
             item.quality = item.quality + 1;
         }
+    }
+
+    protected void dropItemQuality() {
+        item.quality = MIN_QUALITY_ALLOWED;
     }
 
     protected void decreaseSellIn() {
@@ -39,10 +47,6 @@ public class NormalItemUpdater implements ItemUpdater {
     }
 
     protected boolean isExpired() {
-        return item.sellIn < 0;
-    }
-
-    protected void dropItemQuality() {
-        item.quality = 0;
+        return item.sellIn < EXPIRY_THRESHOLD;
     }
 }

@@ -11,6 +11,6 @@ public class LegendaryExtendedItem extends NormalItemUpdater {
 
     @Override
     public void update() {
-        // dp nothing
+        // do nothing
     }
 }
