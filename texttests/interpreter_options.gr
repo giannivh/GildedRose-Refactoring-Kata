@@ -1,0 +1,2 @@
+# If your .class files are somewhere else, add the path to the list
+-cp ${TEXTTEST_HOME}/build/classes/java/test:${TEXTTEST_HOME}/build/classes/java/main
