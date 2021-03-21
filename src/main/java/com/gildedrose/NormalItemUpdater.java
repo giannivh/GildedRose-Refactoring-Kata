@@ -20,6 +20,10 @@ public class NormalItemUpdater implements ItemUpdater {
         }
     }
 
+    protected int getQualityWeight() {
+        return 1;
+    }
+
     // util
 
     private static final int MIN_QUALITY_ALLOWED =  0;
@@ -27,15 +31,11 @@ public class NormalItemUpdater implements ItemUpdater {
     private static final int EXPIRY_THRESHOLD    =  0;
 
     protected void decreaseItemQuality() {
-        if (item.quality > MIN_QUALITY_ALLOWED) {
-            item.quality = item.quality - 1;
-        }
+        item.quality = Math.max(MIN_QUALITY_ALLOWED, item.quality - getQualityWeight());
     }
 
     protected void increaseItemQuality() {
-        if (item.quality < MAX_QUALITY_ALLOWED) {
-            item.quality = item.quality + 1;
-        }
+        item.quality = Math.min(MAX_QUALITY_ALLOWED, item.quality + getQualityWeight());
     }
 
     protected void dropItemQuality() {

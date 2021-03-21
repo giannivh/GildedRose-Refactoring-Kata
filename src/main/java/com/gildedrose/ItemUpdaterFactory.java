@@ -13,6 +13,8 @@ public class ItemUpdaterFactory {
                 return new AgedBrieItemUpdater(item);
             case "Backstage passes to a TAFKAL80ETC concert":
                 return new BackstagePassesItemUpdater(item);
+            case "Conjured Mana Cake":
+                return new ConjuredItemUpdater(item);
             default:
                 return new NormalItemUpdater(item);
         }
