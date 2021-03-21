@@ -35,14 +35,16 @@ class GildedRose {
         decreaseSellIn(item);
 
         if (isExpired(item)) {
-            if (item.name.equals("Aged Brie")) {
-                increaseItemQuality(item);
-            } else {
-                if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+            switch (item.name) {
+                case "Aged Brie":
+                    increaseItemQuality(item);
+                    break;
+                case "Backstage passes to a TAFKAL80ETC concert":
                     item.quality = 0;
-                } else {
+                    break;
+                default:
                     decreaseItemQuality(item);
-                }
+                    break;
             }
         }
     }
