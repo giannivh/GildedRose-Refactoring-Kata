@@ -98,8 +98,8 @@ class GildedRoseTest {
     @Test
     void updateQualityNeverSellsOrDecreasesQualityForLegendaryItems() {
         // given
-        int itemSellIn  = 3;
-        int itemQuality = 3;
+        int itemSellIn  = 0;
+        int itemQuality = 80;
         Item item = createLegendaryItem(itemSellIn, itemQuality);
 
         // when
