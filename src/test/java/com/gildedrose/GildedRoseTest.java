@@ -180,6 +180,36 @@ class GildedRoseTest {
         assertThat(item.quality, is(equalTo(50)));
     }
 
+    @Test
+    void updateQualityLowersSellInByOneAndQualityByTwoForConjuredItems() {
+        // given
+        int itemSellIn  = 3;
+        int itemQuality = 3;
+        Item item = createConjuredItem(itemSellIn, itemQuality);
+
+        // when
+        runGildedRoseApp(item);
+
+        // then
+        assertThat(item.sellIn,  is(equalTo(itemSellIn - 1)));
+        assertThat(item.quality, is(equalTo(itemQuality - 2)));
+    }
+
+    @Test
+    void updateQualityLowersSellInByOneAndQualityByFourForExpiredConjuredItems() {
+        // given
+        int itemSellIn  = 0;
+        int itemQuality = 6;
+        Item item = createConjuredItem(itemSellIn, itemQuality);
+
+        // when
+        runGildedRoseApp(item);
+
+        // then
+        assertThat(item.sellIn,  is(equalTo(itemSellIn - 1)));
+        assertThat(item.quality, is(equalTo(itemQuality - 4)));
+    }
+
     // util
 
     private void runGildedRoseApp(Item... items) {
@@ -201,5 +231,9 @@ class GildedRoseTest {
 
     private Item createBackstagePassesItem(int sellIn, int quality) {
         return new Item("Backstage passes to a TAFKAL80ETC concert", sellIn, quality);
+    }
+
+    private Item createConjuredItem(int sellIn, int quality) {
+        return new Item("Conjured Mana Cake", sellIn, quality);
     }
 }
