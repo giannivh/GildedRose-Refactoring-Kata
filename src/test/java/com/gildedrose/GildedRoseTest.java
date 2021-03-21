@@ -82,7 +82,7 @@ class GildedRoseTest {
     }
 
     @Test
-    void updateQualityNeverReturnsQualityAboveFifty() {
+    void updateQualityNeverReturnsQualityAboveFiftyForAgedBrieItems() {
         // given
         int itemSellIn  = 0;
         int itemQuality = 50;
@@ -164,6 +164,20 @@ class GildedRoseTest {
 
         // then
         assertThat(item.quality, is(equalTo(0)));
+    }
+
+    @Test
+    void updateQualityNeverReturnsQualityAboveFiftyForBackstagePassesItems() {
+        // given
+        int itemSellIn  = 3;
+        int itemQuality = 49;
+        Item item = createBackstagePassesItem(itemSellIn, itemQuality);
+
+        // when
+        runGildedRoseApp(item);
+
+        // then
+        assertThat(item.quality, is(equalTo(50)));
     }
 
     // util
