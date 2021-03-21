@@ -34,7 +34,7 @@ class GildedRose {
 
         decreaseSellIn(item);
 
-        if (item.sellIn < 0) {
+        if (isExpired(item)) {
             if (item.name.equals("Aged Brie")) {
                 increaseItemQuality(item);
             } else {
@@ -67,5 +67,9 @@ class GildedRose {
         } else {
             item.sellIn = item.sellIn - 1;
         }
+    }
+
+    private boolean isExpired(Item item) {
+        return item.sellIn < 0;
     }
 }
