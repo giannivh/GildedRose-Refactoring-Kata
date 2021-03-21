@@ -18,6 +18,9 @@ class GildedRose {
             case "Aged Brie":
                 increaseItemQuality(item);
                 decreaseSellIn(item);
+                if (isExpired(item)) {
+                    increaseItemQuality(item);
+                }
                 break;
             case "Backstage passes to a TAFKAL80ETC concert":
                 increaseItemQuality(item);
@@ -28,25 +31,17 @@ class GildedRose {
                     increaseItemQuality(item);
                 }
                 decreaseSellIn(item);
+                if (isExpired(item)) {
+                    item.quality = 0;
+                }
                 break;
             default:
                 decreaseItemQuality(item);
                 decreaseSellIn(item);
-                break;
-        }
-        
-        if (isExpired(item)) {
-            switch (item.name) {
-                case "Aged Brie":
-                    increaseItemQuality(item);
-                    break;
-                case "Backstage passes to a TAFKAL80ETC concert":
-                    item.quality = 0;
-                    break;
-                default:
+                if (isExpired(item)) {
                     decreaseItemQuality(item);
-                    break;
-            }
+                }
+                break;
         }
     }
 
