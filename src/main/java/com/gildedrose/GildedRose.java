@@ -14,22 +14,22 @@ class GildedRose {
     }
     
     private void updateQualityForItem(Item item) {
-        if (item.name.equals("Aged Brie") || item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-            if (item.quality < 50) {
-                item.quality = item.quality + 1;
-
-                if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                    if (item.sellIn < 11) {
-                        increaseItemQuality(item);
-                    }
-
-                    if (item.sellIn < 6) {
-                        increaseItemQuality(item);
-                    }
+        switch (item.name) {
+            case "Aged Brie":
+                increaseItemQuality(item);
+                break;
+            case "Backstage passes to a TAFKAL80ETC concert":
+                increaseItemQuality(item);
+                if (item.sellIn < 11) {
+                    increaseItemQuality(item);
                 }
-            }
-        } else {
-            decreaseItemQuality(item);
+                if (item.sellIn < 6) {
+                    increaseItemQuality(item);
+                }
+                break;
+            default:
+                decreaseItemQuality(item);
+                break;
         }
 
         decreaseSellIn(item);
