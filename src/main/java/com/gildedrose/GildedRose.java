@@ -15,6 +15,8 @@ class GildedRose {
     
     private void updateQualityForItem(Item item) {
         switch (item.name) {
+            case "Sulfuras, Hand of Ragnaros":
+                break;
             case "Aged Brie":
                 increaseItemQuality(item);
                 decreaseSellIn(item);
@@ -47,9 +49,6 @@ class GildedRose {
 
     private void decreaseItemQuality(Item item) {
         if (item.quality > 0) {
-            if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
-                return;
-            }
             item.quality = item.quality - 1;
         }
     }
@@ -61,10 +60,7 @@ class GildedRose {
     }
 
     private void decreaseSellIn(Item item) {
-        if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
-        } else {
-            item.sellIn = item.sellIn - 1;
-        }
+        item.sellIn = item.sellIn - 1;
     }
 
     private boolean isExpired(Item item) {
