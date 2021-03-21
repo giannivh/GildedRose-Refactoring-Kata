@@ -17,6 +17,7 @@ class GildedRose {
         switch (item.name) {
             case "Aged Brie":
                 increaseItemQuality(item);
+                decreaseSellIn(item);
                 break;
             case "Backstage passes to a TAFKAL80ETC concert":
                 increaseItemQuality(item);
@@ -26,14 +27,14 @@ class GildedRose {
                 if (item.sellIn < 6) {
                     increaseItemQuality(item);
                 }
+                decreaseSellIn(item);
                 break;
             default:
                 decreaseItemQuality(item);
+                decreaseSellIn(item);
                 break;
         }
-
-        decreaseSellIn(item);
-
+        
         if (isExpired(item)) {
             switch (item.name) {
                 case "Aged Brie":
